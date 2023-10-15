@@ -8,3 +8,4 @@ gensim
 fasttext #not sure if this is needed
 python-rake
 sumy
+axios
