@@ -7,7 +7,8 @@ import SummaryComponent from './SummaryComponent';
 function App() {
   const [customSummary, setCustomSummary] = useState('');
   const [sumySummaries, setSumySummaries] = useState({});
-  const [modifiedText, setModifiedText] = useState(''); // To store text improved by the backend
+  const [modifiedText, setModifiedText] = useState(''); 
+  const [dataFetched, setDataFetched] = useState(false); 
 
   const handleSummarize = (text) => {
     console.log('Button clicked, sending request');
@@ -18,6 +19,7 @@ function App() {
         setCustomSummary(result.custom_summary);
         setSumySummaries(result.sumy_summaries);
         setModifiedText(result.modified_text);
+        setDataFetched(true); 
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -30,22 +32,27 @@ function App() {
         <h1>Text Summarization Tool</h1>
         <InputComponent onSummarize={handleSummarize} />
         <div className="Result">
-          <div>
-            <h2>Custom Summary</h2>
-            <div className="summary-box">
-              <SummaryComponent summary={customSummary} />
-            </div>
-          </div>
-          <div>
-            {Object.keys(sumySummaries).map((approach) => (
-              <div key={approach}>
-                <h3>{approach}</h3>
-                <div className="summary-box">
-                  <SummaryComponent summary={sumySummaries[approach].join(' ')} />
-                </div>
+          {dataFetched && (
+            <div>
+              <h2>Custom Summary</h2>
+              <div className="summary-box">
+                <SummaryComponent summary={customSummary} />
               </div>
-            ))}
-          </div>
+            </div>
+          )}
+          {dataFetched && (
+            <div>
+              <h2>Sumy-Based Summaries</h2>
+              {Object.keys(sumySummaries).map((approach) => (
+                <div key={approach}>
+                  <h3>{approach}</h3>
+                  <div className="summary-box">
+                    <SummaryComponent summary={sumySummaries[approach].join(' ')} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
