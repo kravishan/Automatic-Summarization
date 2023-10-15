@@ -77,45 +77,26 @@ textarea {
   margin: 10px 0;
 }
 
-.fixed-box {
-  width: 100%; /* Updated to 100% */
-  height: 200px;
-  overflow: auto;
-}
+
 
 /* New styles for the summary box */
 .summary-box {
-  width: 80%;
+  width: 95%;
   margin: 20px auto;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-.summary-content {
-  max-height: 200px;
-  overflow: hidden;
-  transition: max-height 0.3s;
-  padding: 10px;
-}
-
-.summary-content.expanded {
-  max-height: none;
-}
-
-.expand-button {
-  background-color: #0056b3;
+.more-button{
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 2px 5px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin: 10px;
+  font-size: 12px;
+  margin: 3px 0;
 }
 
-.expand-button:hover {
-  background-color: #000000;
-}
+
+
+
