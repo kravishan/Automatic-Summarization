@@ -5,7 +5,8 @@ import InputComponent from './InputComponent';
 import SummaryComponent from './SummaryComponent';
 
 function App() {
-  const [summary, setSummary] = useState('');
+  const [customSummary, setCustomSummary] = useState('');
+  const [sumySummaries, setSumySummaries] = useState({});
   const [modifiedText, setModifiedText] = useState(''); // To store text improved by backend
 
   const handleSummarize = (text) => {
@@ -14,7 +15,8 @@ function App() {
       .post('http://127.0.0.1:5000/summarize', { text })
       .then((response) => {
         const result = response.data;
-        setSummary(result.summary);
+        setCustomSummary(result.custom_summary);
+        setSumySummaries(result.sumy_summaries);
         setModifiedText(result.modified_text);
       })
       .catch((error) => {
@@ -27,7 +29,19 @@ function App() {
       <h1>Text Summarization Tool</h1>
       <InputComponent onSummarize={handleSummarize} />
       <div className="Result">
-        <SummaryComponent summary={modifiedText} />
+        <div>
+          <h2>Custom Summary</h2>
+          <SummaryComponent summary={customSummary} />
+        </div>
+        <div>
+          <h2>Sumy-Based Summaries</h2>
+          {Object.keys(sumySummaries).map((approach) => (
+            <div key={approach}>
+              <h3>{approach}</h3>
+              <SummaryComponent summary={sumySummaries[approach].join(' ')} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

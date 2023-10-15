@@ -5,6 +5,12 @@ import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lsa import LsaSummarizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
+from sumy.summarizers.kl import KLSummarizer
+from sumy.summarizers.text_rank import TextRankSummarizer
 
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +42,6 @@ def preprocess(text):
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    # Retrieve the text data from the request
     data = request.get_json()
     text = data.get('text')
     
@@ -78,12 +83,46 @@ def summarize():
     # Sort sentences by weight in descending order
     sorted_sentences = [sentence for _, sentence in sorted(zip(sentence_weights, sentences), reverse=True)]
 
-    # Generate the summary from sorted sentences
+    # Generate the custom summary from sorted sentences
     N = 2  # You can adjust the number of sentences in the summary
-    summary = " ".join(sorted_sentences[:N])
-    
-    return jsonify({'modified_text': summary})
+    custom_summary = " ".join(sorted_sentences[:N])
 
+    # Function to summarize the document using different summarization approaches
+    def summarize_with_various_approaches(document, language):
+        parser = PlaintextParser.from_string(document, Tokenizer(language))
+        summarizers = {
+            "LexRank": LexRankSummarizer(),
+            "LSA": LsaSummarizer(),
+            "KL": KLSummarizer(),
+            "TextRank": TextRankSummarizer(),
+        }
+
+        summaries = {}
+
+        for approach, summarizer in summarizers.items():
+            summary = summarizer(parser.document, 10)
+            summaries[approach] = summary
+
+        return summaries
+    
+    language = "english"
+    summaries = summarize_with_various_approaches(text, language)
+
+    sumy_summaries = {
+        approach: [str(sentence) for sentence in summary] for approach, summary in summaries.items()
+    }
+
+    return jsonify({'custom_summary': custom_summary, 'sumy_summaries': sumy_summaries})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
+
+
+
+    ####
+    ##return jsonify({'modified_text': summary})

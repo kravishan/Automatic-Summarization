@@ -32,7 +32,18 @@ def summarize_with_various_approaches(document, language):
 
 # Input the document you want to summarize
 document = """
-In the context of online reviews, personal factors can influence how many reviews consumers read, the type of reviews they read, and how they interpret the reviews. For example, consumers with a high decision-making drive may read fewer reviews, but they may be more likely to focus on reviews that are written by experts or other knowledgeable consumers. Consumers who are more uncertain about the product may read more reviews, and they may be more likely to focus on reviews that discuss the pros and cons of the product in detail.
+The Industrial Revolution was a period of significant technological, economic, and social change that began in Britain in the late 18th century and spread to other parts of the world. It marked a major turning point in history as traditional agrarian economies transitioned to industrial and manufacturing-based societies.
+
+During this period, there were remarkable innovations in various fields, including the mechanization of agriculture, the development of steam engines, and the growth of factories. These changes led to increased production and improved transportation systems, making goods more affordable and accessible.
+
+The Industrial Revolution also had a profound impact on the labor force. With the rise of factories, many people moved from rural areas to urban centers in search of employment. This shift resulted in the growth of cities and a significant change in living conditions.
+
+Technological advancements, such as the invention of the spinning jenny and the power loom, revolutionized the textile industry. Iron and steel production saw significant developments, as did the construction of railways and ships, enabling faster and more efficient transportation of goods and people.
+
+The spread of the Industrial Revolution to other parts of the world, including the United States and continental Europe, brought about further industrialization. These changes paved the way for the modern world and had lasting effects on society, politics, and the global economy.
+
+In summary, the Industrial Revolution was a period of profound change that marked the transition from agrarian economies to industrialized, manufacturing-based societies. It led to technological advancements, urbanization, and significant improvements in production and transportation. The effects of the Industrial Revolution are still felt today, shaping the world we live in.
+
 """
 language = "english" 
 
