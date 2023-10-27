@@ -7,22 +7,44 @@ import SummaryComponent from './SummaryComponent';
 function App() {
   const [customSummary, setCustomSummary] = useState('');
   const [sumySummaries, setSumySummaries] = useState({});
-  const [modifiedText, setModifiedText] = useState(''); 
-  const [dataFetched, setDataFetched] = useState(false); 
+  const [modifiedText, setModifiedText] = useState('');
+  const [dataFetched, setDataFetched] = useState(false);
 
   const handleSummarize = (text) => {
-    console.log('Button clicked, sending request');
+    // Send the text to OpenAI for summarization
+    const apiKey = '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'; 
+    console.log('Enter text=',text);
+
     axios
-      .post('http://127.0.0.1:5000/summarize', { text })
-      .then((response) => {
-        const result = response.data;
-        setCustomSummary(result.custom_summary);
-        setSumySummaries(result.sumy_summaries);
-        setModifiedText(result.modified_text);
-        setDataFetched(true); 
+      .post('https://api.openai.com/v1/engines/davinci/completions', {
+        prompt: `Summarize: ${text}`,
+        max_tokens: 50,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((openAIResponse) => {
+        const summarizedText = openAIResponse.data.choices[0].text;
+        console.log('Chatgpt genarated text=',summarizedText);
+
+        // Send the Chatgpt text to local API 
+        axios
+          .post('http://127.0.0.1:5000/summarize', { text: summarizedText })
+          .then((localApiResponse) => {
+            const result = localApiResponse.data;
+            setCustomSummary(result.custom_summary);
+            setSumySummaries(result.sumy_summaries);
+            setModifiedText(result.modified_text);
+            setDataFetched(true);
+          })
+          .catch((error) => {
+            console.error('Error in local API request:', error);
+          });
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error('Error in OpenAI request:', error);
       });
   };
 
