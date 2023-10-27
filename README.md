@@ -12,10 +12,9 @@ This repository contains a Python script that aids in the extraction of crucial 
 * Dependency parsing
 * Named entity recognition
 * Sentiment analysis
-
-- Extracts the main title of the HTML document.
-- Retrieves the abstract of the document.
-- Gathers all the titles of sections and subsections present in the document.
+* Extract the main title of the HTML document
+* Retrieves the abstract of the document
+* Gathers all the titles of sections and subsections present in the document
 
 ## Prerequisites
 
