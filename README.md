@@ -34,6 +34,10 @@ python app.py
 cd client
 npm start
 ```
+## Jupyter Notebook
+This Jupyter Notebook contains a tutorial on how to use fianlp, a Python library for natural language processing. The tutorial covers the following topics:
+*Introduction to fianlp
+
 
 
 
