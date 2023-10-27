@@ -4,6 +4,15 @@ This repository contains a Python script that aids in the extraction of crucial 
 
 ## Features
 
+* Introduction to fianlp
+* Text preprocessing
+* Tokenization
+* Lemmatization
+* Part-of-speech tagging
+* Dependency parsing
+* Named entity recognition
+* Sentiment analysis
+
 - Extracts the main title of the HTML document.
 - Retrieves the abstract of the document.
 - Gathers all the titles of sections and subsections present in the document.
@@ -34,16 +43,7 @@ python app.py
 cd client
 npm start
 ```
-## Jupyter Notebook
-This Jupyter Notebook contains a tutorial on how to use fianlp, a Python library for natural language processing. The tutorial covers the following topics:
-* Introduction to fianlp
-* Text preprocessing
-* Tokenization
-* Lemmatization
-* Part-of-speech tagging
-* Dependency parsing
-* Named entity recognition
-* Sentiment analysis
+
 
 
 
