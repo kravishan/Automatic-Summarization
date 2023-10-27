@@ -1,0 +1,11 @@
+spacy
+en-core-web-sm
+beautifulsoup4
+html5lib
+nltk
+py-rouge
+gensim
+fasttext #not sure if this is needed
+python-rake
+sumy
+axios
