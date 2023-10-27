@@ -36,7 +36,14 @@ npm start
 ```
 ## Jupyter Notebook
 This Jupyter Notebook contains a tutorial on how to use fianlp, a Python library for natural language processing. The tutorial covers the following topics:
-*Introduction to fianlp
+* Introduction to fianlp
+* Text preprocessing
+* Tokenization
+* Lemmatization
+* Part-of-speech tagging
+* Dependency parsing
+* Named entity recognition
+* Sentiment analysis
 
 
 
