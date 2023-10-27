@@ -10,13 +10,6 @@ This repository contains a Python script that aids in the extraction of crucial 
 
 ## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
-
-- Python 3.x
-- Libraries: 
-  - `beautifulsoup4`
-  - `lxml`
-
 You can install these libraries using:
 
 ```bash
