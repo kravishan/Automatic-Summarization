@@ -1,6 +1,6 @@
 # Project 29: Automatic Summarization 2
 
-This repository contains a Python script that aids in the extraction of crucial keywords from structured HTML documents. The utility aims to identify significant keywords, which are often present in the titles, abstracts, and section/subsection headers of the document.
+This repository contains a React web app and a Python server for creating a summarizer. It also includes a large number of summarization methods. The file `All Tasks.ipynb` is our Google Colab document that contains answers to all questions up to question number 8. We have developed a web app to showcase the solution to question number 9.
 
 ## Features
 
