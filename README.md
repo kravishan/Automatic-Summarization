@@ -31,9 +31,10 @@ git clone https://github.com/kravishan/Automatic-Summarization.git
 cd Automatic-Summarization
 ```
 
-2. Run the script:
+2. API:
 ```bash
-python3 task-1.py example.html
+cd server
+python app.py
 ```
 
 The script will output the main title, abstract, and all section/subsection titles present in the given HTML document.
