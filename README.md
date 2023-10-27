@@ -34,17 +34,7 @@ python app.py
 cd client
 npm start
 ```
-The script will output the main title, abstract, and all section/subsection titles present in the given HTML document.
 
-For the provided `example.html` with the structure described earlier, the expected output will be:
-
-   ```plaintext
-   Title: Document Keyword Extraction
-   Abstract: This study is among the first attempts to empirically investigate the adoption of mobile government by rural populations in developing economies.
-   Section Titles: ['Introduction', 'Literature review', 'Research model and the development of hypotheses', 'Research methodology', 'Results', 'Conclusion']
-   ```
-
----
 
 
 
