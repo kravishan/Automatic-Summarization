@@ -53,7 +53,7 @@ def summarize():
         doc = nlp(sentence)
         entities = [ent.text for ent in doc.ents if ent.label_ in ("PERSON", "ORG")]
 
-        if entities:  # Check if there are named entities
+        if entities:  
             # Preprocess and lemmatize the sentence
             preprocessed_sentence = preprocess(sentence)
 
@@ -84,7 +84,7 @@ def summarize():
     sorted_sentences = [sentence for _, sentence in sorted(zip(sentence_weights, sentences), reverse=True)]
 
     # Generate the custom summary from sorted sentences
-    N = 2  # You can adjust the number of sentences in the summary
+    N = 2  
     custom_summary = " ".join(sorted_sentences[:N])
 
     # Function to summarize the document using different summarization approaches

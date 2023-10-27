@@ -62,13 +62,10 @@ textarea {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
 }
 
-/* InputComponent.css */
-
 .InputComponent {
   text-align: center;
 }
 
-/* SummaryComponent.css */
 
 .SummaryComponent {
   text-align: left;
@@ -78,9 +75,6 @@ textarea {
   margin: 10px 0;
 }
 
-
-
-/* New styles for the summary box */
 .summary-box {
   width: 95%;
   margin: 20px auto;
