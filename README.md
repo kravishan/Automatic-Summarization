@@ -20,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 You can install these libraries using:
 
 ```bash
-pip install beautifulsoup4 lxml
+pip install requirements.txt
 ```
 
 ## Usage
