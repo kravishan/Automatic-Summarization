@@ -58,6 +58,14 @@ function App() {
         <h1>Text Summarization Tool</h1>
         <InputComponent onSummarize={handleSummarize} />
         <div className="Result">
+        {chatGPTSummary && (
+            <div>
+              <h2>Golden Summary</h2>
+              <div className="summary-box">
+                <SummaryComponent summary={chatGPTSummary} />
+              </div>
+            </div>
+          )}
           {dataFetched && (
             <div>
               <h2>Custom Summary</h2>
@@ -65,16 +73,7 @@ function App() {
                 <SummaryComponent summary={customSummary} />
               </div>
             </div>
-          )}
-          {/* Display ChatGPT summary */}
-          {chatGPTSummary && (
-            <div>
-              <h2>ChatGPT Summary</h2>
-              <div className="summary-box">
-                <SummaryComponent summary={chatGPTSummary} />
-              </div>
-            </div>
-          )}
+          )}         
           {dataFetched && (
             <div>
               <h2>Sumy-Based Summaries</h2>
