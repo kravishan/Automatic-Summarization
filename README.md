@@ -33,8 +33,8 @@ cd Automatic-Summarization
 ```
 
 2. Add your OpenAI API key
--Rename .env_sample file to .env
--Add your API key there
+* Rename .env_sample file to .env
+* Add your API key there
 
 4. Start API:
 ```bash
