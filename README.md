@@ -32,12 +32,16 @@ git clone https://github.com/kravishan/Automatic-Summarization.git
 cd Automatic-Summarization
 ```
 
-2. Start API:
+2. Add your OpenAI API key
+Rename .env_sample file to .env
+Add your API key there
+
+4. Start API:
 ```bash
 cd server
 python app.py
 ```
-3. Start WEB APP
+4. Start WEB APP
 ```bash
 cd client
 npm start
