@@ -53,17 +53,24 @@ def calculate_rouge_scores(generated_summary, reference_summary):
 def summarize():
     data = request.get_json()
     text = data.get('text')
-    reference_summary = data.get('text') 
 
     # Tokenize the document into sentences
     sentences = nltk.sent_tokenize(text)
+
+    # Initialize a dictionary to store the reference summaries for each approach
+    reference_summaries = {
+        "LexRank": "Reference LexRank summary",
+        "LSA": "Reference LSA summary",
+        "KL": "Reference KL summary",
+        "TextRank": "Reference TextRank summary",
+    }
 
     for sentence in sentences:
         # Use SpaCy to identify named entities
         doc = nlp(sentence)
         entities = [ent.text for ent in doc.ents if ent.label_ in ("PERSON", "ORG")]
 
-        if entities:  
+        if entities:
             # Preprocess and lemmatize the sentence
             preprocessed_sentence = preprocess(sentence)
 
@@ -78,10 +85,10 @@ def summarize():
             entity_matrix = tfidf_entity_vectorizer.fit_transform(entities)
             entity_scores.append(entity_matrix.toarray()[0])
         else:
-            word_scores.append([])  
-            entity_scores.append([]) 
+            word_scores.append([])
+            entity_scores.append([])
 
-    # Calculate POS scores for each sentence 
+    # Calculate POS scores for each sentence
     pos_scores = [1.0 if "NN" in sentence else 0.0 for sentence in sentences]
 
     # Calculate the final sentence weights using the provided equation
@@ -94,7 +101,7 @@ def summarize():
     sorted_sentences = [sentence for _, sentence in sorted(zip(sentence_weights, sentences), reverse=True)]
 
     # Generate the custom summary from sorted sentences
-    N = 2  
+    N = 2
     custom_summary = " ".join(sorted_sentences[:N])
 
     # Function to summarize the document using different summarization approaches
@@ -114,19 +121,21 @@ def summarize():
             generated_summary = " ".join([str(sentence) for sentence in summary])
 
             # Calculate ROUGE scores for the generated summary against the reference summary
-            rouge_scores = calculate_rouge_scores(generated_summary, reference_summary)
-            logging.info(f'ROUGE Scores backend: {rouge_scores}')
+            rouge_scores = calculate_rouge_scores(generated_summary, reference_summaries[approach])
+            logging.info(f'ROUGE Scores for {approach}: {rouge_scores}')
             summaries[approach] = {
                 "summary": generated_summary,
                 "rouge_scores": rouge_scores
             }
 
         return summaries
-    
+
     language = "english"
     summaries = summarize_with_various_approaches(text, language)
 
     return jsonify({'custom_summary': custom_summary, 'sumy_summaries': summaries})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
