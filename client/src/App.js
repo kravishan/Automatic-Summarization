@@ -6,14 +6,17 @@ import SummaryComponent from './SummaryComponent';
 
 function App() {
   const [customSummary, setCustomSummary] = useState('');
+  const [chatGPTSummary, setChatGPTSummary] = useState('');
   const [sumySummaries, setSumySummaries] = useState({});
   const [modifiedText, setModifiedText] = useState('');
   const [dataFetched, setDataFetched] = useState(false);
 
+  const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+
   const handleSummarize = (text) => {
     // Send the text to OpenAI for summarization
-    const apiKey = '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'; 
-    console.log('Enter text=',text);
+    console.log('Enter text=', text);
+    console.log(process.env);
 
     axios
       .post('https://api.openai.com/v1/engines/davinci/completions', {
@@ -27,9 +30,10 @@ function App() {
       })
       .then((openAIResponse) => {
         const summarizedText = openAIResponse.data.choices[0].text;
-        console.log('Chatgpt genarated text=',summarizedText);
+        console.log('ChatGPT generated text=', summarizedText);
+        setChatGPTSummary(summarizedText);
 
-        // Send the Chatgpt text to local API 
+        // Send the ChatGPT text to local API
         axios
           .post('http://127.0.0.1:5000/summarize', { text: summarizedText })
           .then((localApiResponse) => {
@@ -59,6 +63,15 @@ function App() {
               <h2>Custom Summary</h2>
               <div className="summary-box">
                 <SummaryComponent summary={customSummary} />
+              </div>
+            </div>
+          )}
+          {/* Display ChatGPT summary */}
+          {chatGPTSummary && (
+            <div>
+              <h2>ChatGPT Summary</h2>
+              <div className="summary-box">
+                <SummaryComponent summary={chatGPTSummary} />
               </div>
             </div>
           )}
