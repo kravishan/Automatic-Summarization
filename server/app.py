@@ -11,6 +11,9 @@ from sumy.summarizers.lsa import LsaSummarizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from sumy.summarizers.kl import KLSummarizer
 from sumy.summarizers.text_rank import TextRankSummarizer
+from rouge import Rouge  
+import logging
+
 
 app = Flask(__name__)
 CORS(app)
@@ -40,11 +43,18 @@ def preprocess(text):
     tokens = [lemmatizer.lemmatize(token) for token in tokens]
     return ' '.join(tokens)
 
+# Function to calculate ROUGE scores
+def calculate_rouge_scores(generated_summary, reference_summary):
+    rouge = Rouge()
+    scores = rouge.get_scores(generated_summary, reference_summary)
+    return scores
+
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
     text = data.get('text')
-    
+    reference_summary = data.get('text') 
+
     # Tokenize the document into sentences
     sentences = nltk.sent_tokenize(text)
 
@@ -101,28 +111,22 @@ def summarize():
 
         for approach, summarizer in summarizers.items():
             summary = summarizer(parser.document, 10)
-            summaries[approach] = summary
+            generated_summary = " ".join([str(sentence) for sentence in summary])
+
+            # Calculate ROUGE scores for the generated summary against the reference summary
+            rouge_scores = calculate_rouge_scores(generated_summary, reference_summary)
+            logging.info(f'ROUGE Scores backend: {rouge_scores}')
+            summaries[approach] = {
+                "summary": generated_summary,
+                "rouge_scores": rouge_scores
+            }
 
         return summaries
     
     language = "english"
     summaries = summarize_with_various_approaches(text, language)
 
-    sumy_summaries = {
-        approach: [str(sentence) for sentence in summary] for approach, summary in summaries.items()
-    }
-
-    return jsonify({'custom_summary': custom_summary, 'sumy_summaries': sumy_summaries})
+    return jsonify({'custom_summary': custom_summary, 'sumy_summaries': summaries})
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
-
-
-    ####
-    ##return jsonify({'modified_text': summary})

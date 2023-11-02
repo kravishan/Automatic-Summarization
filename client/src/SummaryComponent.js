@@ -3,7 +3,7 @@ import React from 'react';
 function SummaryComponent({ summary }) {
   return (
     <div className="fixed-box">
-      <h2>Summary:</h2>
+      <h4>Summary:</h4>
       <p>{summary}</p>
     </div>
   );
