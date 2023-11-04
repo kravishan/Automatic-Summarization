@@ -16,7 +16,7 @@ function App() {
 
   const handleSummarize = (text) => {
     // Send the text to OpenAI for summarization
-    const apiKey = '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'; 
+    const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
     console.log('Enter text=',text);
 
         // Send the ChatGPT text to local API 
