@@ -73,6 +73,7 @@ python app.py
 7. Start the React web app:
 ```bash
 cd client
+npm install
 npm start
 ```
 
