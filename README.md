@@ -4,7 +4,7 @@ This repository contains a React web app and a Python server for creating a summ
 
 ## Demonstration Video
 
-For a comprehensive demonstration of the application setup and usage, watch our demo video on YouTube:
+For a comprehensive demonstration of the application setup and usage, watch our demo video on YouTube: [App Demo Video](https://youtu.be/bewVOYbnSx4)
 
 [![App Demonstration](http://img.youtube.com/vi/bewVOYbnSx4/0.jpg)](https://youtu.be/bewVOYbnSx4)
 
