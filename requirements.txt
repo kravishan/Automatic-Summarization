@@ -9,3 +9,9 @@ fasttext #not sure if this is needed
 python-rake
 sumy
 axios
+Flask
+flask-cors
+scikit-learn
+rouge
+rouge-score
+py-rouge
