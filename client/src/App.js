@@ -3,44 +3,48 @@ import axios from 'axios';
 import './App.css';
 import InputComponent from './InputComponent';
 import SummaryComponent from './SummaryComponent';
+import RougeScoresTable from './RougeScoresTable'; 
 
 function App() {
   const [customSummary, setCustomSummary] = useState('');
-  const [chatGPTSummary, setChatGPTSummary] = useState('');
-  const [sumySummaries, setSumySummaries] = useState({});
-  const [modifiedText, setModifiedText] = useState('');
+  const [summaries, setSummaries] = useState({});
+  const [rougeScores, setRougeScores] = useState({});
+  const [goldenSummary, setGoldenSummary] = useState('');
+  const [customRougeScores, setCustomRougeScores] = useState({});
   const [dataFetched, setDataFetched] = useState(false);
 
-  const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
   const handleSummarize = (text) => {
     // Send the text to OpenAI for summarization
-    console.log('Enter text=', text);
-    console.log(process.env);
+    const apiKey = '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'; 
+    console.log('Enter text=',text);
 
-    axios
-      .post('https://api.openai.com/v1/engines/davinci/completions', {
-        prompt: `Summarize: ${text}`,
-        max_tokens: 50,
-      }, {
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        }
-      })
-      .then((openAIResponse) => {
-        const summarizedText = openAIResponse.data.choices[0].text;
-        console.log('ChatGPT generated text=', summarizedText);
-        setChatGPTSummary(summarizedText);
-
-        // Send the ChatGPT text to local API
+        // Send the ChatGPT text to local API 
         axios
-          .post('http://127.0.0.1:5000/summarize', { text: summarizedText })
+      .post(
+        'https://api.openai.com/v1/engines/davinci/completions',
+        {
+          prompt: `Only provide the summary of the following text: ${text}`,
+          max_tokens: 50,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((openAIResponse) => {
+        const summarizedText = openAIResponse.data.choices[0].text.trim();
+        axios
+          .post('http://127.0.0.1:5000/summarize', { golden_summary: summarizedText, input_text: text })
           .then((localApiResponse) => {
             const result = localApiResponse.data;
             setCustomSummary(result.custom_summary);
-            setSumySummaries(result.sumy_summaries);
-            setModifiedText(result.modified_text);
+            setSummaries(result.summaries);
+            setRougeScores(result.rouge_scores);
+            setGoldenSummary(result.golden_summary);
+            setCustomRougeScores(result.custom_rouge_scores);
             setDataFetched(true);
           })
           .catch((error) => {
@@ -52,36 +56,39 @@ function App() {
       });
   };
 
+
+
   return (
     <div className="scroll-container">
       <div className="App">
         <h1>Text Summarization Tool</h1>
         <InputComponent onSummarize={handleSummarize} />
         <div className="Result">
-        {chatGPTSummary && (
-            <div>
-              <h2>Golden Summary</h2>
-              <div className="summary-box">
-                <SummaryComponent summary={chatGPTSummary} />
-              </div>
-            </div>
-          )}
           {dataFetched && (
             <div>
               <h2>Custom Summary</h2>
               <div className="summary-box">
                 <SummaryComponent summary={customSummary} />
+                <h3>Custom Rouge Scores</h3>
+                {/* Here, we can display the custom Rouge scores */}
+                <div className="summary-box">
+                  <RougeScoresTable rougeScores={customRougeScores} />
+                </div>
               </div>
-            </div>
-          )}         
-          {dataFetched && (
-            <div>
-              <h2>Sumy-Based Summaries</h2>
-              {Object.keys(sumySummaries).map((approach) => (
+              <h2>Golden Summary</h2>
+              <div className="summary-box">
+                <SummaryComponent summary={goldenSummary} />
+              </div>
+              {Object.keys(summaries).map((approach) => (
                 <div key={approach}>
-                  <h3>{approach}</h3>
+                  <h3>{approach} Summary</h3>
                   <div className="summary-box">
-                    <SummaryComponent summary={sumySummaries[approach].join(' ')} />
+                    <SummaryComponent summary={summaries[approach]} />
+                    <h3>{approach} Rouge Scores</h3>
+                    {/* Display Rouge scores for each summarization approach */}
+                    <div className="summary-box">
+                      <RougeScoresTable rougeScores={rougeScores[approach]} />
+                    </div>
                   </div>
                 </div>
               ))}
