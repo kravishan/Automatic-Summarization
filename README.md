@@ -26,7 +26,8 @@ If you encounter any issues with mixed content blocking in your browser (i.e., t
 3. Scroll down to the "Insecure content" section and change from "Block (default)" to "Allow".
 ![UI](https://raw.githubusercontent.com/kravishan/Automatic-Summarization/main/assets/as-allow-content.png)
 
-**NOTE**: You can switch the setting back to "Block (default)" after you're done with the demonstration.
+⚠️ **WARNING**: Please use the summarization feature carefully. The "golden summary" is generated using our OpenAI API key, and each request consumes credits from our account. To help us save these credits, please do not generate summaries more than necessary. Remember to switch your browser's setting back to "Block (default)" for "Insecure content" once you have finished using the demo.
+
 
 ### Trying Out the Summarizer
 
