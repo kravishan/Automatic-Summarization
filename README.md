@@ -26,7 +26,7 @@ If you encounter any issues with mixed content blocking in your browser (i.e., t
 3. Scroll down to the "Insecure content" section and change from "Block (default)" to "Allow".
 ![UI](https://raw.githubusercontent.com/kravishan/Automatic-Summarization/main/assets/as-allow-content.png)
 
-**Warning**: Allowing insecure content can pose a security risk. Be sure to switch the setting back to "Block (default)" after you're done with the demonstration.
+**NOTE**: You can switch the setting back to "Block (default)" after you're done with the demonstration.
 
 ### Trying Out the Summarizer
 
