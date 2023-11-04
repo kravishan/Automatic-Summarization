@@ -2,7 +2,7 @@
 
 This repository features a React web application and a Python server designed to create a text summarizer with an extensive array of summarization methods. The `Answers-Colab.ipynb` is our interactive Google Colab document that provides solutions to all questions up to question number 8. For a live demonstration of our summarizer tackling question number 9, we have crafted a specialized web application.
 
-Access our Google Colab notebook here: [Answers-Colab.ipynb](https://colab.research.google.com/drive/1gmHP6pgfMN770SelaDGe0CS9MUe5f8Ye)
+Access our Google Colab notebook here: [https://colab.research.google.com/drive/1gmHP6pgfMN770SelaDGe0CS9MUe5f8Ye](https://colab.research.google.com/drive/1gmHP6pgfMN770SelaDGe0CS9MUe5f8Ye)
 
 ## Demonstration Video
 
