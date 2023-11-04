@@ -14,7 +14,7 @@ This video guide covers the entire process, from starting the Python Flask serve
 
 ## Live Demo
 
-A live demo of the Automatic Summarization application is available at the following URL: [https://project-29-automatic-summarization-2.vercel.app/](https://project-29-automatic-summarization-2.vercel.app/).
+A live demo of the Automatic Summarization application is available at the following URL: [https://project-29-automatic-summarization-2.vercel.app/](https://project-29-automatic-summarization-2.vercel.app/{:target="_blank"}).
 
 ### Accessing the Live Demo
 
