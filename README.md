@@ -57,7 +57,7 @@ npm start
 ```
 ## Screenshots 
 
-![UI](https://github.com/kravishan/Automatic-Summarization/assets/125926016/887d8691-9750-408c-9968-d08d24898643)
+![UI](https://github.com/kravishan/Automatic-Summarization/assets/as-screenshot.png)
 
 
 
