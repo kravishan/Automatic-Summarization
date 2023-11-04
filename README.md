@@ -41,11 +41,16 @@ git clone https://github.com/kravishan/Automatic-Summarization.git
 cd Automatic-Summarization
 ```
 
-2. Create a virtual environment and activate it:
+2. Install virtualenv (if it’s not installed): 
+```bash
+pip install virtualenv
+```
+Then, create a virtual environment and activate it:
 ```bash
 python3 -m venv autosumvenv
 source autosumvenv/bin/activate
 ```
+
 
 3. Upgrade pip and install the required Python packages:
 ```bash
