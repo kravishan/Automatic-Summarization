@@ -1,6 +1,8 @@
 # Project 29: Automatic Summarization 2
 
-This repository contains a React web app and a Python server for creating a summarizer. It also includes a large number of summarization methods. The file `Answers.ipynb` is our Google Colab document that contains answers to all questions up to question number 8. We have developed a web app to showcase the solution to question number 9.
+This repository features a React web application and a Python server designed to create a text summarizer with an extensive array of summarization methods. The `Answers.ipynb` is our interactive Google Colab document that provides solutions to all questions up to question number 8. For a live demonstration of our summarizer tackling question number 9, we have crafted a specialized web application.
+
+Access our Google Colab notebook here: [Answers-Colab.ipynb](https://colab.research.google.com/drive/1gmHP6pgfMN770SelaDGe0CS9MUe5f8Ye)
 
 ## Demonstration Video
 
