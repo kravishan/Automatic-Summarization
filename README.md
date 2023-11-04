@@ -6,7 +6,7 @@ Access our Google Colab notebook here: [https://colab.research.google.com/drive/
 
 ## Demonstration Video
 
-For a comprehensive demonstration of the application setup and usage, watch our demo video on YouTube: [App Demo Video](https://youtu.be/bewVOYbnSx4)
+For a comprehensive demonstration of the application setup and usage, watch our demo video on YouTube: [https://youtu.be/bewVOYbnSx4](https://youtu.be/bewVOYbnSx4)
 
 [![App Demonstration](http://img.youtube.com/vi/bewVOYbnSx4/0.jpg)](https://youtu.be/bewVOYbnSx4)
 
